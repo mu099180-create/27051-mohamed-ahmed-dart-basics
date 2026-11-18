@@ -1,4 +1,3 @@
-// by MA
 // Student: Mohamed Ahmed
 // Reg no: 27051
 const String regNo = '27051';
@@ -6,6 +5,7 @@ final int d = int.parse(regNo[regNo.length - 1]);
 final int t = int.parse(regNo.substring(regNo.length - 2));
 
 int momoFee(int amount) {
+  // by MA
   if (amount <= 0) return -1;
   if (amount <= 1000) return 20;
   if (amount <= 10000) return 100;
@@ -14,6 +14,7 @@ int momoFee(int amount) {
 }
 
 String formatRwf(int amount) {
+  // by MA
   bool negative = amount < 0;
   String digits = (negative ? -amount : amount).toString();
   String result = '';
@@ -34,6 +35,7 @@ String formatRwf(int amount) {
 }
 
 bool isValidPin(String pin) {
+  // by MA
   if (pin.length != 5) return false;
 
   int i = 0;
@@ -62,6 +64,7 @@ bool isValidPin(String pin) {
 }
 
 int sendMoney(int balance, int amount) {
+  // by MA
   int fee = momoFee(amount);
 
   if (fee == -1) {
@@ -82,6 +85,7 @@ int sendMoney(int balance, int amount) {
 }
 
 int buyAirtime(int balance, int amount) {
+  // by MA
   if (amount < 100 || amount > 50000) {
     print('Failed: airtime must be from 100 to 50,000 RWF');
     return balance;
@@ -100,6 +104,7 @@ int buyAirtime(int balance, int amount) {
 }
 
 void main() {
+  // by MA
   print('Reg no: $regNo | D = $d | T = $t');
 
   print(isValidPin('12345'));
@@ -123,10 +128,7 @@ void main() {
 
   print('Final balance: ${formatRwf(balance)}');
 
-  print(formatRwf(0));
-  print(formatRwf(1000));
-  print(formatRwf(-5000));
-
-  print(isValidPin('54321'));
-  print(isValidPin('11111'));
-}
+  // My own tests (expected output in the comment)
+  print(formatRwf(999)); // expect: 999 RWF
+  print(formatRwf(1250000)); // expect: 1,250,000 RWF
+  print(formatRwf(100000)); // expect: 100,000 RWF
