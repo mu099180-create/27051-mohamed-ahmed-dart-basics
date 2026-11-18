@@ -6,8 +6,8 @@
 - C1, C2, C3, C4, C5: done
 - D1, D2: done
 - E: done
-- F: formatRwf, isValidPin, sendMoney, buyAirtime and main done in momo_sim.dart
-- G and answers.pdf: done and uploaded
+- F: all four functions and main in momo_sim.dart
+- G and answers.pdf: done
 
 ## In progress
 - Nothing
