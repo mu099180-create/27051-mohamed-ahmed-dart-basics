@@ -13,7 +13,31 @@ int momoFee(int amount) {
   return 1500;
 }
 
+String formatRwf(int amount) {
+  // by MA
+  bool negative = amount < 0;
+  String digits = (negative ? -amount : amount).toString();
+  String result = '';
+  int count = 0;
+  int i = digits.length - 1;
+  while (i >= 0) {
+    if (count > 0 && count % 3 == 0) {
+      result = ',$result';
+    }
+    result = digits[i] + result;
+    count++;
+    i--;
+  }
+  String sign = negative ? '-' : '';
+  return '$sign$result RWF';
+}
+
 void main() {
   // by MA
   print('Reg no: $regNo | D = $d | T = $t');
+  print(formatRwf(0));
+  print(formatRwf(999));
+  print(formatRwf(1000));
+  print(formatRwf(1250000));
+  print(formatRwf(-5000));
 }
