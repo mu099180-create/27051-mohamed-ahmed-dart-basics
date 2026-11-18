@@ -20,7 +20,6 @@ String formatRwf(int amount) {
   String result = '';
   int count = 0;
   int i = digits.length - 1;
-
   while (i >= 0) {
     if (count > 0 && count % 3 == 0) {
       result = ',$result';
@@ -29,7 +28,6 @@ String formatRwf(int amount) {
     count++;
     i--;
   }
-
   String sign = negative ? '-' : '';
   return '$sign$result RWF';
 }
@@ -39,12 +37,9 @@ bool isValidPin(String pin) {
   if (pin.length != 5) return false;
 
   int i = 0;
-
   while (i < pin.length) {
     int c = pin.codeUnitAt(i);
-
     if (c < 48 || c > 57) return false;
-
     i++;
   }
 
@@ -52,12 +47,10 @@ bool isValidPin(String pin) {
 
   bool allSame = true;
   i = 1;
-
   while (i < pin.length) {
     if (pin[i] != pin[0]) allSame = false;
     i++;
   }
-
   if (allSame) return false;
 
   return true;
@@ -66,21 +59,16 @@ bool isValidPin(String pin) {
 int sendMoney(int balance, int amount) {
   // by MA
   int fee = momoFee(amount);
-
   if (fee == -1) {
     print('Failed: invalid amount');
     return balance;
   }
-
   if (amount + fee > balance) {
     print('Failed: insufficient balance');
     return balance;
   }
-
   int newBalance = balance - amount - fee;
-
   print('Sent ${formatRwf(amount)} (fee ${formatRwf(fee)}). New balance: ${formatRwf(newBalance)}');
-
   return newBalance;
 }
 
@@ -90,16 +78,12 @@ int buyAirtime(int balance, int amount) {
     print('Failed: airtime must be from 100 to 50,000 RWF');
     return balance;
   }
-
   if (amount > balance) {
     print('Failed: insufficient balance');
     return balance;
   }
-
   int newBalance = balance - amount;
-
   print('Bought airtime ${formatRwf(amount)}. New balance: ${formatRwf(newBalance)}');
-
   return newBalance;
 }
 
@@ -119,16 +103,19 @@ void main() {
   balance = sendMoney(balance, (d + 1) * 3000);
   balance = sendMoney(balance, (d + 1) * 3000);
   balance = sendMoney(balance, (d + 1) * 3000);
-
   balance = buyAirtime(balance, 1000);
-
   balance = sendMoney(balance, 0);
-
   balance = sendMoney(balance, 200000);
 
   print('Final balance: ${formatRwf(balance)}');
 
   // My own tests (expected output in the comment)
-  print(formatRwf(999)); // expect: 999 RWF
-  print(formatRwf(1250000)); // expect: 1,250,000 RWF
-  print(formatRwf(100000)); // expect: 100,000 RWF
+  print(formatRwf(100)); // expect: 100 RWF
+  print(formatRwf(1000000)); // expect: 1,000,000 RWF
+  print(formatRwf(-1000)); // expect: -1,000 RWF
+  print(formatRwf(-999)); // expect: -999 RWF (might break: "-,999")
+  print(isValidPin('00000')); // expect: false
+  print(isValidPin('1234 ')); // expect: false
+  print(isValidPin('')); // expect: false
+  print(isValidPin('13579')); // expect: true
+}
