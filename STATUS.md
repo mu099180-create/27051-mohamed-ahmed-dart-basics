@@ -7,9 +7,10 @@
 - D1, D2: done
 - E: done
 - F: formatRwf, isValidPin, sendMoney, buyAirtime and main done in momo_sim.dart
+- G and answers.pdf: done and uploaded
 
 ## In progress
-- answers.pdf: Part F output and Part G debugging log
+- Nothing
 
 ## Stuck on
-- Nothing right now
+- Nothing
