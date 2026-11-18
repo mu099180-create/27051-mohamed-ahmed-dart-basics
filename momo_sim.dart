@@ -32,12 +32,36 @@ String formatRwf(int amount) {
   return '$sign$result RWF';
 }
 
+bool isValidPin(String pin) {
+  // by MA
+  if (pin.length != 5) return false;
+
+  int i = 0;
+  while (i < pin.length) {
+    int c = pin.codeUnitAt(i);
+    if (c < 48 || c > 57) return false;
+    i++;
+  }
+
+  if (pin == '12345') return false;
+
+  bool allSame = true;
+  i = 1;
+  while (i < pin.length) {
+    if (pin[i] != pin[0]) allSame = false;
+    i++;
+  }
+  if (allSame) return false;
+
+  return true;
+}
+
 void main() {
   // by MA
   print('Reg no: $regNo | D = $d | T = $t');
-  print(formatRwf(0));
-  print(formatRwf(999));
-  print(formatRwf(1000));
-  print(formatRwf(1250000));
-  print(formatRwf(-5000));
+  print(isValidPin('12345'));
+  print(isValidPin('77777'));
+  print(isValidPin('4821'));
+  print(isValidPin('48a21'));
+  print(isValidPin('4821$d'));
 }
