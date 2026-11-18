@@ -92,7 +92,18 @@ int buyAirtime(int balance, int amount) {
 void main() {
   // by MA
   print('Reg no: $regNo | D = $d | T = $t');
-  int b = 20000;
-  b = buyAirtime(b, 1000);
-  b = buyAirtime(b, 50);
-  b = buyAirtime(b, 6000
+
+  // 1. PIN checks
+  print(isValidPin('12345'));
+  print(isValidPin('77777'));
+  print(isValidPin('4821'));
+  print(isValidPin('48a21'));
+  print(isValidPin('4821$d'));
+
+  // 2. Starting balance
+  int balance = 20000 + t * 500;
+  print('Starting balance: ${formatRwf(balance)}');
+
+  // 3. Transactions in order
+  balance = sendMoney(balance, (d + 1) * 3000);
+  balance = sen
