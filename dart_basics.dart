@@ -42,7 +42,33 @@ void drawTriangle(int height) {
   }
 }
 
+int momoFee(int amount) {
+  // by MA
+  if (amount <= 0) {
+    return -1;
+  } else if (amount <= 1000) {
+    return 20;
+  } else if (amount <= 10000) {
+    return 100;
+  } else if (amount <= 150000) {
+    return 250;
+  } else {
+    return 1500;
+  }
+}
+
+String maskPhone(String phone) {
+  // by MA
+  if (phone.length != 10) {
+    return 'INVALID';
+  }
+  return phone.substring(0, 3) +
+      '*' * (phone.length - 5) +
+      phone.substring(phone.length - 2);
+}
+
 void main() {
+  // by MA
   print('Reg no: $regNo | D = $d | T = $t');
 
   String name = 'Mohamed Ahmed';
@@ -55,4 +81,16 @@ void main() {
   drawTriangle(d + 3);
   drawTriangle(0);
   drawTriangle(-2);
+
+  String phone = '0788123456';
+  int total = 0;
+  int i = 1;
+  while (i <= d + 3) {
+    int amount = i * 4000 + t * 100;
+    int fee = momoFee(amount);
+    total += fee;
+    print('Receipt $i | $amount RWF | fee $fee RWF | to ${maskPhone(phone)}');
+    i++;
+  }
+  print('Total fees: $total RWF');
 }
