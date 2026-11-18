@@ -73,12 +73,26 @@ int sendMoney(int balance, int amount) {
   return newBalance;
 }
 
+int buyAirtime(int balance, int amount) {
+  // by MA
+  if (amount < 100 || amount > 50000) {
+    print('Failed: airtime must be from 100 to 50,000 RWF');
+    return balance;
+  }
+  if (amount > balance) {
+    print('Failed: insufficient balance');
+    return balance;
+  }
+  int newBalance = balance - amount;
+  print('Bought airtime ${formatRwf(amount)}. '
+      'New balance: ${formatRwf(newBalance)}');
+  return newBalance;
+}
+
 void main() {
   // by MA
   print('Reg no: $regNo | D = $d | T = $t');
   int b = 20000;
-  b = sendMoney(b, 5000);
-  b = sendMoney(b, 0);
-  b = sendMoney(b, 100000);
-  print(formatRwf(b));
-}
+  b = buyAirtime(b, 1000);
+  b = buyAirtime(b, 50);
+  b = buyAirtime(b, 6000
